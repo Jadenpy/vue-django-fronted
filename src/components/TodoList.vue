@@ -34,11 +34,11 @@ export default {
   },
   methods: {
     async fetchTodos() {
-      const res = await axios.get(`${process.env.VUE_APP_API_URL}/api/todos/`)
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE}/api/todos/`)
       this.todos = res.data
     },
     async addTodo() {
-      const res = await axios.post(`${process.env.VUE_APP_API_URL}/api/todos/`, {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE}/api/todos/`, {
         title: this.newTodo,
         completed: false,
       })
@@ -46,10 +46,10 @@ export default {
       this.newTodo = ''
     },
     async updateTodo(todo) {
-      await axios.put(`${process.env.VUE_APP_API_URL}/api/todos/${todo.id}/`, todo)
+      await axios.put(`${import.meta.env.VITE_API_BASE}/api/todos/${todo.id}/`, todo)
     },
     async deleteTodo(id) {
-      await axios.delete(`${process.env.VUE_APP_API_URL}/api/todos/${id}/`)
+      await axios.delete(`${import.meta.env.VITE_API_BASE}/api/todos/${id}/`)
       this.todos = this.todos.filter((t) => t.id !== id)
     },
   },
